@@ -1,0 +1,22 @@
+server:
+    error:
+        include-message: always
+        include-binding-errors: always
+
+spring:
+    datasource:
+        password: root
+        url: jdbc:postgresql://localhost:5433/user
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+
+# JWT Configuration
+jwt.secret: 665956568c5938defa9efb45a3590b9c62eb02ee996074
+jwt.expiration: 3600000
