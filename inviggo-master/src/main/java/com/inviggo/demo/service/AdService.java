@@ -1,8 +1,11 @@
 package com.inviggo.demo.service;
 
 import com.inviggo.demo.dto.AdDto;
+import com.inviggo.demo.model.Ad;
+import com.inviggo.demo.request.CreateAdRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,4 +15,5 @@ public interface AdService {
 //                                    Optional<Double> maxPrice, Optional<Boolean> showMineOnly, Pageable pageable);
     Page<AdDto> getAllAds(int page,int size);
     AdDto getAdById(Long id);
+    Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails);
 }

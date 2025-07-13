@@ -20,3 +20,4 @@ spring:
 # JWT Configuration
 jwt.secret: 665956568c5938defa9efb45a3590b9c62eb02ee996074
 jwt.expiration: 3600000
+API_KEY: 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
