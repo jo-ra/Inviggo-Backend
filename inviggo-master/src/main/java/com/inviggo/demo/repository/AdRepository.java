@@ -26,5 +26,6 @@ public interface AdRepository extends JpaRepository<Ad,Long> {
 //            Pageable pageable
 //    );
     Page<Ad> findByUser_Username(String username, Pageable pageable);
-
+    @Query("SELECT a FROM Ad a WHERE (:minPrice IS NULL OR a.price >= :minPrice) AND (:maxPrice IS NULL OR a.price <= :maxPrice)")
+    Page<Ad> findByPriceRange(@Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice, Pageable pageable);
 }

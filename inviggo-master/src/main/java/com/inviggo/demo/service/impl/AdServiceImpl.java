@@ -65,6 +65,7 @@ public class AdServiceImpl implements AdService {
         return this.adRepository.findAll(PageRequest.of(page, size)).map(adMapper::adToAdDto);
     }
 
+
     @Override
     public AdDto getAdById(Long id){
         Optional<Ad> adOpt = adRepository.findById(id);
@@ -123,5 +124,12 @@ public class AdServiceImpl implements AdService {
         ad.setImageUrl(updateAdRequest.getImageUrl());
 
         return adRepository.save(ad);
+    }
+
+    @Override
+    public Page<AdDto> getAdsByPriceRange(Double minPrice, Double maxPrice, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return adRepository.findByPriceRange(minPrice, maxPrice, pageable)
+                .map(adMapper::adToAdDto);
     }
 }

@@ -20,5 +20,6 @@ public interface AdService {
     Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails);
     void deleteAdById(Long id);
     Ad updateAd(Long id, UpdateAdRequest updateAdRequest, UserDetails userDetails);
+    Page<AdDto> getAdsByPriceRange(Double minPrice, Double maxPrice, int page, int size);
 
 }

@@ -30,6 +30,7 @@ public class AdController {
         return adService.getAllAds(page,size);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<AdDto> getAdById(@PathVariable (name = "id") Long id){
         AdDto ad = adService.getAdById(id);
@@ -70,6 +71,14 @@ public class AdController {
         }catch (IllegalArgumentException e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/filterByPrice")
+    public Page<AdDto> getAdsByPriceRange(@RequestParam(required = false) Double minPrice,
+                                          @RequestParam(required = false) Double maxPrice,
+                                          @RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "20") int size) {
+        return adService.getAdsByPriceRange(minPrice, maxPrice, page, size);
     }
 
 
