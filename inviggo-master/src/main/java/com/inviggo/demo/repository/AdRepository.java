@@ -25,5 +25,6 @@ public interface AdRepository extends JpaRepository<Ad,Long> {
 //            @Param("userId") Optional<Long> userId,
 //            Pageable pageable
 //    );
+    Page<Ad> findByUser_Username(String username, Pageable pageable);
 
 }

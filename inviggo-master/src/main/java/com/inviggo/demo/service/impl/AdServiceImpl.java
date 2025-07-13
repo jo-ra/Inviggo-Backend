@@ -71,6 +71,12 @@ public class AdServiceImpl implements AdService {
     }
 
     @Override
+    public Page<AdDto> getAdsForUser(String username, int page, int size) {
+        System.out.println("Username passed to getAdsForUser: " + username);
+        return adRepository.findByUser_Username(username, PageRequest.of(page,size)).map(adMapper::adToAdDto);
+    }
+
+    @Override
     public Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails){
         Ad ad = new Ad();
         ad.setTitle(createAdRequest.getAd().getTitle());

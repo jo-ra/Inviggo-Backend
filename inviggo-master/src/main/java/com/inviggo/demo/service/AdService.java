@@ -15,6 +15,8 @@ public interface AdService {
 //                                    Optional<Double> maxPrice, Optional<Boolean> showMineOnly, Pageable pageable);
     Page<AdDto> getAllAds(int page,int size);
     AdDto getAdById(Long id);
+    Page<AdDto> getAdsForUser(String username,int page,int size);
     Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails);
     void deleteAdById(Long id);
+
 }

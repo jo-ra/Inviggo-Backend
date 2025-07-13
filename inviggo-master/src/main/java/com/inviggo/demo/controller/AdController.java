@@ -35,6 +35,12 @@ public class AdController {
         return new ResponseEntity<>(ad, ad != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/user/{username}")
+    public Page<AdDto> getAdsForUser(@PathVariable String username, @RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "20") int size) {
+        return adService.getAdsForUser(username,page, size);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Boolean> createAd(@RequestBody CreateAdRequest request, @AuthenticationPrincipal UserDetails userDetails){
         Ad ad = adService.createAd(request,userDetails);
