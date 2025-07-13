@@ -90,4 +90,13 @@ public class AdServiceImpl implements AdService {
         adRepository.save(ad);
         return ad;
     }
+
+    @Override
+    public void deleteAdById(Long id){
+        if(adRepository.existsById(id)){
+            adRepository.deleteById(id);
+        }else{
+            throw new IllegalArgumentException("Ad with id" + id+ " doesn't exist.");
+        }
+    }
 }

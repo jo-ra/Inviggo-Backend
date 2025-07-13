@@ -43,7 +43,18 @@ public class AdController {
         return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 
     }
-    
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteAd(@PathVariable Long id){
+        try{
+            adService.deleteAdById(id);
+            return ResponseEntity.ok("Ad deleted");
+        }catch (IllegalArgumentException e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }
 
 //

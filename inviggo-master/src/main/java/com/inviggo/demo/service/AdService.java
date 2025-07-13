@@ -16,4 +16,5 @@ public interface AdService {
     Page<AdDto> getAllAds(int page,int size);
     AdDto getAdById(Long id);
     Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails);
+    void deleteAdById(Long id);
 }
