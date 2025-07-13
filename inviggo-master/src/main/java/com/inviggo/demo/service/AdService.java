@@ -3,6 +3,7 @@ package com.inviggo.demo.service;
 import com.inviggo.demo.dto.AdDto;
 import com.inviggo.demo.model.Ad;
 import com.inviggo.demo.request.CreateAdRequest;
+import com.inviggo.demo.request.UpdateAdRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,5 +19,6 @@ public interface AdService {
     Page<AdDto> getAdsForUser(String username,int page,int size);
     Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails);
     void deleteAdById(Long id);
+    Ad updateAd(Long id, UpdateAdRequest updateAdRequest, UserDetails userDetails);
 
 }

@@ -3,6 +3,7 @@ package com.inviggo.demo.controller;
 import com.inviggo.demo.dto.AdDto;
 import com.inviggo.demo.model.Ad;
 import com.inviggo.demo.request.CreateAdRequest;
+import com.inviggo.demo.request.UpdateAdRequest;
 import com.inviggo.demo.service.AdService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,6 +51,17 @@ public class AdController {
 
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Ad> updateAd(@PathVariable Long id, @RequestBody UpdateAdRequest updateAdRequest, @AuthenticationPrincipal UserDetails userDetails) {
+        try {
+        Ad updatedAd = adService.updateAd(id,updateAdRequest,userDetails);
+        return ResponseEntity.ok(updatedAd);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (SecurityException e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAd(@PathVariable Long id){
         try{

@@ -7,6 +7,7 @@ import com.inviggo.demo.model.User;
 import com.inviggo.demo.repository.AdRepository;
 import com.inviggo.demo.repository.UserRepository;
 import com.inviggo.demo.request.CreateAdRequest;
+import com.inviggo.demo.request.UpdateAdRequest;
 import com.inviggo.demo.service.AdService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -104,5 +105,23 @@ public class AdServiceImpl implements AdService {
         }else{
             throw new IllegalArgumentException("Ad with id" + id+ " doesn't exist.");
         }
+    }
+
+    @Override
+    public Ad updateAd(Long id, UpdateAdRequest updateAdRequest, UserDetails userDetails) {
+        Ad ad = adRepository.findById(id).orElse(null);
+
+        if(!ad.getUser().getUsername().equals(userDetails.getUsername())){
+            throw new SecurityException("Not authorized");
+        }
+
+        ad.setTitle(updateAdRequest.getTitle());
+        ad.setDescription(updateAdRequest.getDescription());
+        ad.setCity(updateAdRequest.getCity());
+        ad.setCategory(updateAdRequest.getCategory());
+        ad.setPrice(updateAdRequest.getPrice());
+        ad.setImageUrl(updateAdRequest.getImageUrl());
+
+        return adRepository.save(ad);
     }
 }
