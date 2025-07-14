@@ -21,5 +21,6 @@ public interface AdService {
     void deleteAdById(Long id);
     Ad updateAd(Long id, UpdateAdRequest updateAdRequest, UserDetails userDetails);
     Page<AdDto> getAdsByPriceRange(Double minPrice, Double maxPrice, int page, int size);
+    Page<AdDto> getFilteredAds(String category, String title, Double minPrice, Double maxPrice, Boolean showMineOnly, String username, Pageable pageable);
 
 }

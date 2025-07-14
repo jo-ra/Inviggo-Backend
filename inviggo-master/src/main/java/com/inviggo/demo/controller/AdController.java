@@ -82,6 +82,22 @@ public class AdController {
     }
 
 
+    @GetMapping("/filter")
+    public Page<AdDto> getFilteredAds(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(defaultValue = "false") Boolean showMineOnly,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        String username = showMineOnly ? userDetails.getUsername() : null;
+        return adService.getFilteredAds(category, title, minPrice, maxPrice, showMineOnly, username, PageRequest.of(page, size));
+    }
+
+
 }
 
 //

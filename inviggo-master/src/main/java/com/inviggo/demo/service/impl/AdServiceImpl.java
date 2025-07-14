@@ -3,6 +3,7 @@ package com.inviggo.demo.service.impl;
 import com.inviggo.demo.dto.AdDto;
 import com.inviggo.demo.mapper.AdMapper;
 import com.inviggo.demo.model.Ad;
+import com.inviggo.demo.model.Category;
 import com.inviggo.demo.model.User;
 import com.inviggo.demo.repository.AdRepository;
 import com.inviggo.demo.repository.UserRepository;
@@ -130,6 +131,28 @@ public class AdServiceImpl implements AdService {
     public Page<AdDto> getAdsByPriceRange(Double minPrice, Double maxPrice, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return adRepository.findByPriceRange(minPrice, maxPrice, pageable)
+                .map(adMapper::adToAdDto);
+    }
+
+
+    @Override
+    public Page<AdDto> getFilteredAds(String category, String title, Double minPrice, Double maxPrice, Boolean showMineOnly, String username, Pageable pageable) {
+        Long userId = null;
+        if (showMineOnly != null && showMineOnly) {
+            userId = userRepository.findByUsername(username).map(User::getId).orElse(null);
+        }
+
+        // Convert category string to Category enum
+        Category categoryEnum = null;
+        if (category != null) {
+            try {
+                categoryEnum = Category.valueOf(category); // Adjust case if necessary
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid category: " + category);
+            }
+        }
+
+        return adRepository.findFilteredAds(categoryEnum, title, minPrice, maxPrice, userId, pageable)
                 .map(adMapper::adToAdDto);
     }
 }
