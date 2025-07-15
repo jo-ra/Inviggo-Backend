@@ -21,3 +21,4 @@ Da biste pokrenuli ovaj projekat, potrebno je da imate sledeće instalirano na v
 
 <p> 3. Prvo pokrenuti backend pa frontend </p>
 
+<h3> Dodala sam swagger na ruti: http://localhost:8080/swagger-ui/index.html#/ </h3>
