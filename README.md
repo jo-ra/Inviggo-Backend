@@ -19,6 +19,6 @@ Da biste pokrenuli ovaj projekat, potrebno je da imate sledeće instalirano na v
 
 <p>2. Nakon unzipovanja i otvaranja koda u izabranom editoru ulazi se u folder inviggo-novi-master i bice potrebno da se skinu biblioteke upotrebom mavena</p>
 
-<p> 3. Prvo pokrenuti backend pa frontend </p>
+<p> 3. Prvo pokrenuti backend i sačekati da se ispiše poruka: Database seeded successfully!, pa pokrenuti frontend </p>
 
 <h3> Dodala sam swagger na ruti: http://localhost:8080/swagger-ui/index.html#/ </h3>
