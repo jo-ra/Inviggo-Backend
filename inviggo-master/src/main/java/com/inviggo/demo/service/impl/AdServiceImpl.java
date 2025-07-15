@@ -24,6 +24,8 @@ import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
+import static org.yaml.snakeyaml.tokens.Token.ID.Value;
+
 @Service
 public class AdServiceImpl implements AdService {
 
@@ -82,12 +84,12 @@ public class AdServiceImpl implements AdService {
     @Override
     public Ad createAd(CreateAdRequest createAdRequest, UserDetails userDetails){
         Ad ad = new Ad();
-        ad.setTitle(createAdRequest.getAd().getTitle());
-        ad.setDescription(createAdRequest.getAd().getDescription());
-        ad.setCity(createAdRequest.getAd().getCity());
-        ad.setCategory(createAdRequest.getAd().getCategory());
-        ad.setPrice(createAdRequest.getAd().getPrice());
-        ad.setImageUrl(createAdRequest.getAd().getImageUrl());
+        ad.setTitle(createAdRequest.getTitle());
+        ad.setDescription(createAdRequest.getDescription());
+        ad.setCity(createAdRequest.getCity());
+        ad.setCategory(Category.valueOf(createAdRequest.getCategory()));
+        ad.setPrice(createAdRequest.getPrice());
+        ad.setImageUrl(createAdRequest.getImageUrl());
 
         LocalDateTime creationDate = LocalDateTime.now();
         ad.setCreatedAt(creationDate);
