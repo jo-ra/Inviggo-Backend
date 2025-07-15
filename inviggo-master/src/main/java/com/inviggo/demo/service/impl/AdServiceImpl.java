@@ -64,10 +64,9 @@ public class AdServiceImpl implements AdService {
 //    }
 
     @Override
-    public Page<AdDto> getAllAds(int page,int size) {
-        return this.adRepository.findAll(PageRequest.of(page, size)).map(adMapper::adToAdDto);
+    public Page<AdDto> getAllAds(PageRequest pageRequest) {
+        return adRepository.findAll(pageRequest).map(adMapper::adToAdDto);
     }
-
 
     @Override
     public AdDto getAdById(Long id){
