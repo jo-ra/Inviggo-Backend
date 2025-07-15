@@ -17,6 +17,7 @@ public class AdMapper {
         adDto.setTitle(ad.getTitle());
         adDto.setDescription(ad.getDescription());
         adDto.setImageUrl(ad.getImageUrl());
+        adDto.setCreatedAt(ad.getCreatedAt());
         adDto.setSellerName(ad.getUser().getUsername());
         adDto.setSellerPhone(ad.getUser().getPhoneNumber());
         return adDto;

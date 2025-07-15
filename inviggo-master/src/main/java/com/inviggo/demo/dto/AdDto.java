@@ -3,6 +3,8 @@ package com.inviggo.demo.dto;
 import com.inviggo.demo.model.Category;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +16,7 @@ public class AdDto {
     private Double price;
     private String city;
     private Category category;
+    private LocalDateTime createdAt;
     private String sellerName;
     private String sellerPhone;
 
@@ -87,5 +90,13 @@ public class AdDto {
 
     public Category getCategory() {
         return category;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
